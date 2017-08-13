@@ -1,13 +1,11 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 
 import Hello from './components/hello.jsx';
-import World from './components/world.jsx';
 
-render(
+ReactDOM.render(
   <div>
     <Hello />
-    <World />
   </div>,
   document.getElementById('app')
 );
