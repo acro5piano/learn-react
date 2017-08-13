@@ -35,8 +35,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      filename: __dirname + '/index.html',
       template: __dirname + '/index.html',
+      filename: 'index.html',
       inject: true
     }),
   ]
