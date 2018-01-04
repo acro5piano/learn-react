@@ -29,5 +29,8 @@
     "webpack": "^3.5.4",
     "webpack-dev-server": "^2.7.1",
     "webpack-hot-middleware": "^2.18.2"
+  },
+  "devDependencies": {
+    "lodash": "^4.17.4"
   }
 }
