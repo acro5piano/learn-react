@@ -29,6 +29,7 @@ class Todo extends React.Component {
     return (
       <div className="input">
         <h1>TODO</h1>
+        <p>{todoStore.todoCount} tasks remaining</p>
         {todoStore.todos.map((todo, i) =>
           <div className="todo-list" key={i}>
             {todo}
