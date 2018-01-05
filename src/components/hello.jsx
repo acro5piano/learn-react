@@ -19,6 +19,10 @@ export default class Hello extends React.Component {
     this.newTodo = ''
   }
 
+  deleteTodo(index) {
+    this.todoStore.deleteTodo(index)
+  }
+
   render() {
     const listStyle = {
       display: 'flex',
@@ -59,7 +63,7 @@ export default class Hello extends React.Component {
         {todoStore.todos.map((todo, i) =>
           <div style={listStyle} key={i}>
             {todo}
-            <span style={deleteStyle} onClick={event => this.deleteTodo(i)}>delete</span>
+            <span style={deleteStyle} onClick={() => todoStore.deleteTodo(i)}>delete</span>
           </div>
         )}
         <div style={addStyle}>

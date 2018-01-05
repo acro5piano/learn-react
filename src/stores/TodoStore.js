@@ -15,12 +15,7 @@ export default class TodoStore {
   }
 
   deleteTodo(i) {
-    const todos = this.state.todos
-    todos.splice(i, 1)
-    this.setState({
-      todos: todos,
-      newTodo: ''
-    })
+    this.todos.splice(i, 1)
   }
 
 }
