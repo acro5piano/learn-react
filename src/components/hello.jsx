@@ -1,14 +1,22 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import _ from 'lodash'
 import { observer } from 'mobx-react'
+import { observable } from 'mobx'
 
+@observer
+export default class Hello extends React.Component {
+  @observable newTodo = ''
 
-export default @observer class Hello extends React.Component {
-
-  _handleKeyPress(e) {
+  handleKeyPress(e) {
     if (e.key === 'Enter') {
       this.addTodo()
     }
+  }
+
+  addTodo() {
+    this.props.todoStore.addTodo(this.newTodo)
+    this.newTodo = ''
   }
 
   render() {
@@ -43,23 +51,31 @@ export default @observer class Hello extends React.Component {
     }
     const submitClassName = this.props.todoStore.newTodo !== '' ? 'button-primary' : 'button-default'
 
-    const {todos, newTodo} = this.props.todoStore
-
-    console.log(todos, newTodo)
+    const { todoStore } = this.props
 
     return (
       <div className="input">
         <h1>TODO</h1>
+        {todoStore.todos.map((todo, i) =>
+          <div style={listStyle} key={i}>
+            {todo}
+            <span style={deleteStyle} onClick={event => this.deleteTodo(i)}>delete</span>
+          </div>
+        )}
         <div style={addStyle}>
           <input
             type="text"
             autoFocus
             style={newTodoStyle}
-            value={this.props.todoStore.newTodo}
-            onChange={event => this.setState({newTodo: event.target.value})}
-            onKeyPress={event => this._handleKeyPress(event)}>
+            value={this.newTodo}
+            onChange={event => this.newTodo = event.target.value}
+            onKeyPress={event => this.handleKeyPress(event)}
+          >
           </input>
-          <button style={submitStyle} className={submitClassName} onClick={this.addTodo}>Add</button>
+          <button
+            style={submitStyle}
+            className={submitClassName}
+            onClick={event => this.addTodo()}>Add</button>
         </div>
       </div>
     )
