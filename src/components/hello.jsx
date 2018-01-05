@@ -84,6 +84,7 @@ export default class Hello extends React.Component {
         <div style={addStyle}>
           <input
             type="text"
+            autoFocus
             style={newTodoStyle}
             value={this.state.newTodo}
             onChange={event => this.setState({newTodo: event.target.value})}
