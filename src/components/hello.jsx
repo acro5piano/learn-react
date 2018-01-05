@@ -53,7 +53,7 @@ export default class Hello extends React.Component {
     const submitStyle = {
       margin: 0,
     }
-    const submitClassName = this.props.todoStore.newTodo !== '' ? 'button-primary' : 'button-default'
+    const submitClassName = this.newTodo !== '' ? 'button-primary' : 'button-default'
 
     const { todoStore } = this.props
 
