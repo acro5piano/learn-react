@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { observer } from 'mobx-react'
-import { observable, action, IObservableArray } from 'mobx'
+import { observable, action } from 'mobx'
 
 export interface TodoStore {
   addTodo: (title: string) => void;
