@@ -1,10 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { observer } from 'mobx-react'
 import { observable, action } from 'mobx'
+import PropTypes from 'prop-types'
 
 @observer
-export default class Hello extends React.Component {
+class Todo extends React.Component {
   @observable newTodo = ''
 
   handleKeyPress(e) {
@@ -45,15 +45,21 @@ export default class Hello extends React.Component {
             autoFocus
             className="todo-add-input"
             value={this.newTodo}
-            onChange={action(event => this.newTodo = event.target.value)}
+            onChange={action(event => { this.newTodo = event.target.value })}
             onKeyPress={event => this.handleKeyPress(event)}
           >
           </input>
           <button
-            className="todo-add-submit"
+            className={'todo-add-submit ' + submitClassName}
             onClick={event => this.addTodo()}>Add</button>
         </div>
       </div>
     )
   }
 }
+
+Todo.propTypes = {
+  todoStore: PropTypes.object.isRequired
+}
+
+export default Todo

@@ -1,7 +1,7 @@
-import { observable, computed, action, reaction } from 'mobx'
+import { observable, computed, action } from 'mobx'
 
 export default class TodoStore {
-	@observable todos = ['buy milk', 'learn react']
+  @observable todos = ['buy milk', 'learn react']
 
   @computed get todoCount() {
     return this.todos.length
@@ -17,5 +17,4 @@ export default class TodoStore {
   deleteTodo(i) {
     this.todos.splice(i, 1)
   }
-
 }
