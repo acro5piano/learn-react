@@ -1,43 +1,14 @@
-import React from 'react';
-import _ from 'lodash';
+import React from 'react'
+import _ from 'lodash'
+import { observer } from 'mobx-react'
 
-export default class Hello extends React.Component {
-  constructor() {
-    super()
-    this.addTodo = this.addTodo.bind(this);
 
-    this.state = {
-      todos: ['buy milk', 'learn react'],
-      newTodo: '',
-    }
-  }
+export default @observer class Hello extends React.Component {
 
   _handleKeyPress(e) {
     if (e.key === 'Enter') {
-      console.log(this)
       this.addTodo()
     }
-  }
-
-  addTodo() {
-    if (this.state.newTodo === '') {
-      return
-    }
-    const todos = this.state.todos
-    todos.push(this.state.newTodo)
-    this.setState({
-      todos: todos,
-      newTodo: ''
-    })
-  }
-
-  deleteTodo(i) {
-    const todos = this.state.todos
-    todos.splice(i, 1)
-    this.setState({
-      todos: todos,
-      newTodo: ''
-    })
   }
 
   render() {
@@ -70,29 +41,27 @@ export default class Hello extends React.Component {
     const submitStyle = {
       margin: 0,
     }
-    const submitClassName = this.state.newTodo !== '' ? 'button-primary' : 'button-default'
+    const submitClassName = this.props.todoStore.newTodo !== '' ? 'button-primary' : 'button-default'
+
+    const {todos, newTodo} = this.props.todoStore
+
+    console.log(todos, newTodo)
 
     return (
       <div className="input">
         <h1>TODO</h1>
-        {this.state.todos.map((todo, i) =>
-          <div style={listStyle} key={i}>
-            {todo}
-            <span style={deleteStyle} onClick={event => this.deleteTodo(i)}>delete</span>
-          </div>
-        )}
         <div style={addStyle}>
           <input
             type="text"
             autoFocus
             style={newTodoStyle}
-            value={this.state.newTodo}
+            value={this.props.todoStore.newTodo}
             onChange={event => this.setState({newTodo: event.target.value})}
             onKeyPress={event => this._handleKeyPress(event)}>
           </input>
           <button style={submitStyle} className={submitClassName} onClick={this.addTodo}>Add</button>
         </div>
       </div>
-    );
+    )
   }
 }

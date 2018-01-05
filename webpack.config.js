@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-
 module.exports = {
   context: __dirname + '/src',
 
@@ -25,9 +24,6 @@ module.exports = {
         test: /.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react']
-        }
       }
     ]
   },
