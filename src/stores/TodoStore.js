@@ -1,4 +1,4 @@
-import { observable, computed, reaction } from 'mobx'
+import { observable, computed, action, reaction } from 'mobx'
 
 export default class TodoStore {
 	@observable todos = ['buy milk', 'learn react']
@@ -7,7 +7,7 @@ export default class TodoStore {
     return this.todos.length
   }
 
-  addTodo(title) {
+  @action addTodo(title) {
     if (title === '') {
       return
     }
