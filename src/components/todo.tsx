@@ -1,18 +1,23 @@
-import React from 'react'
+import * as React from 'react'
 import { observer } from 'mobx-react'
-import { observable, action } from 'mobx'
-import PropTypes from 'prop-types'
+import { observable, action, IObservableArray } from 'mobx'
+
+export interface TodoStore {
+  addTodo: (title: string) => void;
+  deleteTodo: (i: number) => void;
+  todoCount: number;
+  todos: string[];
+}
 
 export interface TodoProps {
-  compiler: string;
-  framework: string;
+  todoStore: TodoStore;
 }
 
 @observer
 export default class Todo extends React.Component<TodoProps> {
   @observable newTodo = ''
 
-  handleKeyPress(e: React.FormEvent<HTMLInputElement>): void {
+  handleKeyPress(e: any): void {
     if (e.key === 'Enter') {
       this.addTodo()
     }
@@ -23,8 +28,8 @@ export default class Todo extends React.Component<TodoProps> {
     this.newTodo = ''
   }
 
-  deleteTodo(index) {
-    this.todoStore.deleteTodo(index)
+  deleteTodo(index: number) {
+    this.props.todoStore.deleteTodo(index)
   }
 
   render() {
@@ -51,7 +56,7 @@ export default class Todo extends React.Component<TodoProps> {
             autoFocus
             className="todo-add-input"
             value={this.newTodo}
-            onChange={action(event => { this.newTodo = event.target.value })}
+            onChange={action((event: any) => { this.newTodo = event.target.value })}
             onKeyPress={event => this.handleKeyPress(event)}
           >
           </input>

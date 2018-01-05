@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import TodoStore from './stores/TodoStore'
 import Todo from './components/todo'
 import { useStrict } from 'mobx'

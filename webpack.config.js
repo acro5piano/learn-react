@@ -30,7 +30,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           { loader: 'awesome-typescript-loader' },
-          { loader: 'babel-loader' }
+          // { loader: 'babel-loader' }
         ]
       },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
@@ -44,10 +44,10 @@ module.exports = {
     ]
   },
 
-  externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
-  },
+  // externals: {
+  //   "react": "React",
+  //   "react-dom": "ReactDOM"
+  // },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
