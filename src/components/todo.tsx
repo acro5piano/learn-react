@@ -3,11 +3,16 @@ import { observer } from 'mobx-react'
 import { observable, action } from 'mobx'
 import PropTypes from 'prop-types'
 
+export interface TodoProps {
+  compiler: string;
+  framework: string;
+}
+
 @observer
-class Todo extends React.Component {
+export default class Todo extends React.Component<TodoProps> {
   @observable newTodo = ''
 
-  handleKeyPress(e) {
+  handleKeyPress(e: React.FormEvent<HTMLInputElement>): void {
     if (e.key === 'Enter') {
       this.addTodo()
     }
@@ -58,9 +63,3 @@ class Todo extends React.Component {
     )
   }
 }
-
-Todo.propTypes = {
-  todoStore: PropTypes.object.isRequired
-}
-
-export default Todo
