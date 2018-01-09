@@ -33,7 +33,7 @@ export default class Todo extends React.Component<TodoProps> {
   }
 
   render() {
-    const submitClassName = this.newTodo !== '' ? 'button-primary' : 'button-default'
+    const submitClassName = this.newTodo === '' ? 'button-default' : 'button-primary'
     const { todoStore } = this.props
 
     return (
